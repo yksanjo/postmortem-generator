@@ -1,5 +1,9 @@
 # Incident Post-Mortem Template Generator
 
+[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/) [![GitHub stars](https://img.shields.io/github/stars/yksanjo/postmortem-generator?style=social)](https://github.com/yksanjo/postmortem-generator/stargazers) [![GitHub forks](https://img.shields.io/github/forks/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/network/members) [![GitHub issues](https://img.shields.io/github/issues/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/issues)
+[![Last commit](https://img.shields.io/github/last-commit/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/commits/main)
+
+
 Automatically generates structured post-mortem documents from key incident information.
 
 ## Features
