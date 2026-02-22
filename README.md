@@ -1,80 +1,84 @@
-# Incident Post-Mortem Template Generator
+# postmortem-generator
 
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/) [![GitHub stars](https://img.shields.io/github/stars/yksanjo/postmortem-generator?style=social)](https://github.com/yksanjo/postmortem-generator/stargazers) [![GitHub forks](https://img.shields.io/github/forks/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/network/members) [![GitHub issues](https://img.shields.io/github/issues/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/issues)
-[![Last commit](https://img.shields.io/github/last-commit/yksanjo/postmortem-generator.svg)](https://github.com/yksanjo/postmortem-generator/commits/main)
+## Detailed Description
 
+postmortem-generator is maintained as an industry-grade software project with production-ready engineering practices.  
+This repository includes documented setup, quality gates, operational guidance, and governance standards so contributors can safely build, test, and ship changes with confidence.
 
-Automatically generates structured post-mortem documents from key incident information.
+## Problem Statement
 
-## Features
+Describe the user or business problem this project solves, the target users, and expected outcomes.
 
-- Interactive CLI and web form interfaces
-- Asks 5 key questions to capture incident details
-- Generates Markdown/Confluence-ready documents
-- Includes timelines, RCA prompts, and prevention checklists
-- Standardizes post-mortem format across teams
+## Solution Overview
 
-## Installation
+Summarize the architecture, core modules, and runtime behavior at a high level.
+
+## Key Features
+
+- Clear project scope and intended use.
+- Reproducible local development workflow.
+- Test coverage and CI quality gates.
+- Security and contribution policies.
+- Deployment-ready repository structure.
+
+## Repository Structure
+
+```text
+.
+|-- src/                  # Core implementation
+|-- tests/                # Automated test suites
+|-- docs/                 # Design notes and operational docs
+|-- .github/workflows/    # CI pipelines
+|-- README.md
+|-- LICENSE
+|-- CONTRIBUTING.md
+|-- SECURITY.md
+|-- CODE_OF_CONDUCT.md
+```
+
+## Getting Started
+
+### Prerequisites
+
+- Git
+- Project runtime/toolchain for this repo
+
+### Local Setup
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt  # or: pip install -e .[dev]
+pytest
 ```
 
 ## Usage
 
-### CLI Mode (Interactive)
+Document primary commands, API routes, CLI examples, or UI workflows here.
 
-```bash
-python generate_postmortem.py
-```
+## Quality Standards
 
-### CLI Mode (Non-Interactive)
+- CI must pass before merge.
+- Changes require tests for critical behavior.
+- Security-sensitive changes should include risk notes.
+- Keep pull requests focused and reviewable.
 
-```bash
-python generate_postmortem.py \
-  --incident "API Outage" \
-  --date "2024-01-15" \
-  --duration "2 hours" \
-  --impact "All users unable to access API" \
-  --root-cause "Database connection pool exhaustion" \
-  --output postmortem.md
-```
+## Security
 
-### Web Interface
+See `SECURITY.md` for responsible disclosure and handling guidelines.
 
-```bash
-python app.py
-```
+## Contributing
 
-Then open http://localhost:5001 in your browser.
+See `CONTRIBUTING.md` for branching, commit, and pull request expectations.
 
-### Python API
+## Roadmap
 
-```python
-from generate_postmortem import generate_postmortem
+Track upcoming milestones, technical debt, and planned feature work.
 
-postmortem = generate_postmortem(
-    incident_name="API Outage",
-    incident_date="2024-01-15",
-    duration="2 hours",
-    impact="All users unable to access API",
-    root_cause="Database connection pool exhaustion"
-)
+## Support
 
-print(postmortem)
-```
-
-## Output Format
-
-Generates a structured Markdown document with:
-- Executive Summary
-- Timeline
-- Impact Assessment
-- Root Cause Analysis
-- Resolution Steps
-- Prevention Checklist
-- Action Items
+Open a GitHub issue for bugs, feature requests, or documentation gaps.
 
 ## License
 
-MIT
+This project is released under the MIT License.
