@@ -1,84 +1,70 @@
 # postmortem-generator
 
-## Detailed Description
+Generate structured incident post-mortem documents from a few fields of incident
+data. It produces a complete Markdown post-mortem (executive summary, timeline,
+impact assessment, root-cause analysis, resolution, and action items) using
+fixed templates — there is **no LLM or AI involved**; output is deterministic
+string formatting. Use it as a CLI or via a small Flask web form.
 
-postmortem-generator is maintained as an industry-grade software project with production-ready engineering practices.  
-This repository includes documented setup, quality gates, operational guidance, and governance standards so contributors can safely build, test, and ship changes with confidence.
+## Stack
 
-## Problem Statement
+- Python 3.9+
+- [Flask](https://flask.palletsprojects.com/) (web UI)
+- python-dateutil
+- pytest (tests)
 
-Describe the user or business problem this project solves, the target users, and expected outcomes.
-
-## Solution Overview
-
-Summarize the architecture, core modules, and runtime behavior at a high level.
-
-## Key Features
-
-- Clear project scope and intended use.
-- Reproducible local development workflow.
-- Test coverage and CI quality gates.
-- Security and contribution policies.
-- Deployment-ready repository structure.
-
-## Repository Structure
-
-```text
-.
-|-- src/                  # Core implementation
-|-- tests/                # Automated test suites
-|-- docs/                 # Design notes and operational docs
-|-- .github/workflows/    # CI pipelines
-|-- README.md
-|-- LICENSE
-|-- CONTRIBUTING.md
-|-- SECURITY.md
-|-- CODE_OF_CONDUCT.md
-```
-
-## Getting Started
-
-### Prerequisites
-
-- Git
-- Project runtime/toolchain for this repo
-
-### Local Setup
+## Install
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt  # or: pip install -e .[dev]
-pytest
+pip install -r requirements.txt
 ```
 
 ## Usage
 
-Document primary commands, API routes, CLI examples, or UI workflows here.
+### CLI
 
-## Quality Standards
+```bash
+python3 generate_postmortem.py \
+  --incident "API Outage" \
+  --date 2024-01-15 \
+  --duration "2 hours" \
+  --impact "Checkout unavailable for ~30% of users" \
+  --root-cause "Connection pool exhaustion under load" \
+  --output postmortem.md
+```
 
-- CI must pass before merge.
-- Changes require tests for critical behavior.
-- Security-sensitive changes should include risk notes.
-- Keep pull requests focused and reviewable.
+`--timeline` and `--resolution` accept either inline text or a file path. If
+omitted, sensible placeholder sections are generated. Without `--output` the
+document is printed to stdout. `--interactive`/`-i` prompts for fields.
 
-## Security
+### Web UI
 
-See `SECURITY.md` for responsible disclosure and handling guidelines.
+```bash
+python3 app.py
+# serves a form at http://localhost:5001
+```
 
-## Contributing
+The `/` route serves the form; `POST /generate` returns the rendered Markdown.
 
-See `CONTRIBUTING.md` for branching, commit, and pull request expectations.
+## Project structure
 
-## Roadmap
+```text
+.
+|-- generate_postmortem.py   # core generator + CLI entrypoint
+|-- app.py                   # Flask web UI (wraps the generator)
+|-- tests/                   # pytest suite
+|-- requirements.txt
+```
 
-Track upcoming milestones, technical debt, and planned feature work.
+## Tests
 
-## Support
-
-Open a GitHub issue for bugs, feature requests, or documentation gaps.
+```bash
+pip install -r requirements.txt pytest
+pytest
+```
 
 ## License
 
-This project is released under the MIT License.
+MIT — see `LICENSE`.
